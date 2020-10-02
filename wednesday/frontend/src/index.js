@@ -2,6 +2,7 @@ import "./style.css"
 import "bootstrap/dist/css/bootstrap.css"
 import "./jokeFacade"
 import jokeFacade from "./jokeFacade"
+import userFacade from "./userFacade"
 
 /* 
   Add your JavaScript for all exercises Below or in separate js-files, which you must the import above
@@ -84,6 +85,141 @@ setInterval(fetchJokeFromAPI, (1000 * 60 * 60));
 
 
 /* JS For Exercise-3 below */
+///////////////// GET: all users ////////////////////
+function showAllUsers() {
+  userFacade.getUsers()
+  .then(users => {
+    const userRows = users.map(user => `
+    <tr>
+      <td>${user.id}</td>
+      <td>${user.age}</td>
+      <td>${user.name}</td>
+      <td>${user.gender}</td>
+      <td>${user.email}</td>
+    </tr>
+    `);
+    const userRowsAsString = userRows.join("");
+    document.getElementById("allUserRows").innerHTML = userRowsAsString;
+  });
+}
+showAllUsers();
+
+document.getElementById("reloadUsers").addEventListener("click", showAllUsers);
+
+//////////////////// GET: single user by id /////////////////////
+function getUserSearch() {
+  let userID = document.getElementById("searchUserEx4Field").value;
+  userFacade.getUser(userID)
+  .then(user => {
+    document.getElementById("printUserEx4Table").innerHTML = `
+    <table class="table">
+      <tr>
+        <th>Id</th>
+        <th>Age</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Email</th>
+      </tr>
+      <tr>
+        <td>${user.id}</td>
+        <td>${user.age}</td>
+        <td>${user.name}</td>
+        <td>${user.gender}</td>
+        <td>${user.email}</td>
+      </tr>
+    </table>
+    `})
+    .catch(err => {
+      if(err.status) {
+        err.fullError.then(e => document.getElementById("errormessages").value = e.msg);
+      } else {
+        console.log("Network error");
+      }
+    });
+}
+
+document.getElementById("searchUserEx4Btn").addEventListener("click", getUserSearch);
+
+
+function addNewUser() {
+  let newUserAge = document.getElementById("addUserEx4FieldAge").value; 
+  let newUserName = document.getElementById("addUserEx4FieldName").value; 
+  let newUserGender = document.getElementById("addUserEx4FieldGender").value; 
+  let newUserEmail = document.getElementById("addUserEx4FieldEmail").value; 
+
+  const newUser = {
+    age: newUserAge,
+    name: newUserName,
+    gender: newUserGender,
+    email: newUserEmail
+  }
+  userFacade.addUser(newUser)
+  .catch(err => {
+    if(err.status) {
+      err.fullError.then(e => document.getElementById("errormessages").value = e.msg);
+    } else {
+      console.log("Network error");
+    }
+  });
+  ///// Clear input fields ///////
+  document.getElementById("addUserEx4FieldAge").value = ""; 
+  document.getElementById("addUserEx4FieldName").value = ""; 
+  document.getElementById("addUserEx4FieldGender").value = ""; 
+  document.getElementById("addUserEx4FieldEmail").value = ""; 
+}
+document.getElementById("addUserEx4Btn").addEventListener("click", addNewUser);
+
+
+function editExistingUser() {
+  let editUserID = document.getElementById("editUserEx4FieldId").value;
+  let editUserAge = document.getElementById("editUserEx4FieldAge").value; 
+  let editUserName = document.getElementById("editUserEx4FieldName").value; 
+  let editUserGender = document.getElementById("editUserEx4FieldGender").value; 
+  let editUserEmail = document.getElementById("editUserEx4FieldEmail").value; 
+
+  const editedUser = {
+    id: editUserID,
+    age: editUserAge,
+    name: editUserName,
+    gender: editUserGender,
+    email: editUserEmail
+  }
+  userFacade.editUser(editedUser)
+  .catch(err => {
+    if(err.status) {
+      err.fullError.then(e => document.getElementById("errormessages").value = e.msg);
+    } else {
+      console.log("Network error");
+    }
+  });
+
+  /////// clear fields ////////////
+  document.getElementById("editUserEx4FieldId").value = ""; 
+  document.getElementById("editUserEx4FieldAge").value = ""; 
+  document.getElementById("editUserEx4FieldName").value = ""; 
+  document.getElementById("editUserEx4FieldGender").value = ""; 
+  document.getElementById("editUserEx4FieldEmail").value = ""; 
+}
+document.getElementById("editUserEx4Btn").addEventListener("click", editExistingUser);
+
+
+function deleteUserById() {
+  let deleteUserID = document.getElementById("deleteUserEx4FieldId").value;
+
+  userFacade.deleteUser(deleteUserID)
+  .catch(err => {
+    if(err.status) {
+      err.fullError.then(e => document.getElementById("errormessages").value = e.msg);
+    } else {
+      console.log("Network error");
+    }
+  });
+
+  /////// Clear field ///////////
+  document.getElementById("deleteUserEx4FieldId").value = "";
+}
+document.getElementById("deleteUserEx4Btn").addEventListener("click", deleteUserById);
+
 
 
 /* 

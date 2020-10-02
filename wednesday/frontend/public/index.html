@@ -53,38 +53,64 @@
     <!-- This is were you should place your basic HTML for exercise-3 -->
     <div id="ex3_html" style="display:none;">
       <h3>Ex-3</h3>
-      <p>Add your basic HTML for Exercise 3 here</p>
+      <p id="errormessages" class="alert-danger"></p>
 
       <div class="row" style="min-height: 5em;"">
       <div class="col-md-8 pre-scrollable" style="background-color: lightgrey;">
         <h5>All Users</h5>
+        <button id="reloadUsers">Hent brugere</button>  
         <table class="table">
           <thead>
             <tr>
               <th>Id</th>
               <th>Age</th>
-              <th>Name
-              <th>
+              <th>Name</th>
               <th>Gender</th>
               <th>Email </th>
           </thead>
           <tbody id="allUserRows">
-          <tbody>
+          </tbody>
         </table>
       </div>
       <div class="col-md-4" style="background-color: powderblue;">
         <h5>Find User</h5>
+        <input placeholder="Enter user by id..." type="text" id="searchUserEx4Field">
+        <input type="submit" value="Find bruger" id="searchUserEx4Btn">
+        <div id="printUserEx4Table"></div>
       </div>
     </div>
     <div class="row" style="min-height: 5em;">
       <div class="col-md-4" style="background-color: powderblue;">
         <h5>Add User</h5>
+        <input class="mb-2" placeholder="Enter age..." type="text" id="addUserEx4FieldAge" required>
+        <br>
+        <input class="mb-2" placeholder="Enter name..." type="text" id="addUserEx4FieldName" required>
+        <br>
+        <input class="mb-2" placeholder="Enter gender..." type="text" id="addUserEx4FieldGender" required>
+        <br>
+        <input class="mb-2" placeholder="Enter email..." type="email" id="addUserEx4FieldEmail" required>
+        <br>
+        <input type="submit" value="Tilføj bruger" id="addUserEx4Btn">
       </div>
       <div class="col-md-4" style="background-color: lightgrey;">
         <h5>Edit User</h5>
+        <input class="mb-2" placeholder="Enter id of the user..." type="text" id="editUserEx4FieldId" required>
+        <br>
+        <input class="mb-2" placeholder="Enter new age..." type="text" id="editUserEx4FieldAge" required>
+        <br>
+        <input class="mb-2" placeholder="Enter new name..." type="text" id="editUserEx4FieldName" required>
+        <br>
+        <input class="mb-2" placeholder="Enter new gender..." type="text" id="editUserEx4FieldGender" required>
+        <br>
+        <input class="mb-2" placeholder="Enter new email..." type="email" id="editUserEx4FieldEmail" required>
+        <br>
+        <input type="submit" value="Redigér bruger" id="editUserEx4Btn">
       </div>
       <div class="col-md-4" style="background-color: powderblue;">
         <h5>Delete User</h5>
+        <input class="mb-2" placeholder="Enter id..." type="email" id="deleteUserEx4FieldId" required>
+        <br>
+        <input type="submit" value="Slet bruger" id="deleteUserEx4Btn">
       </div>
     </div>
   </div>
