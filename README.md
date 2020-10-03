@@ -1,4 +1,4 @@
-# Flow-2-week-2
+# Flow-2-week-2 (SP5)
 
 #### Link to persons api GitHub: https://github.com/danielbengtsen/flow2_week1_handins
 
