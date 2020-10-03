@@ -1,12 +1,12 @@
 # Flow-2-week-2
 
-#### Link to thursday exercises: https://github.com/danielbengtsen/flow2_week1_handins/tree/week2thursday
+#### Link to persons api GitHub: https://github.com/danielbengtsen/flow2_week1_handins
 
 Status tuesday:
-- All done, minus challenge 7 & 8.
+- All done, minus challenge 7/8.
 
 Status wednesday:
 - All done, minus visible error messages in exercise 4.
 
 Status thursday:
-- Goes here...
+- All done, minus red exercises (delete/edit person).
